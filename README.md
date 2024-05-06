@@ -1,6 +1,6 @@
-# Spatial Analysis
+# Spatial Trancriptomic Analysis of Visium 10X Genomics data
 
-This is the GitHub repository associated with my master's thesis "Spatial characterization of the dynamic changes driven by an exon6 deletion variant in murine CTRB1" for the master in Bioinformatics and Compuational Biology at the Autonomus University of Madrid.
+This is the GitHub repository associated with my master's thesis "Spatial characterization of the dynamic changes driven by an exon6 deletion variant in murine CTRB1" for the master in Bioinformatics and Computational Biology at the Autonomus University of Madrid.
 
 This work was carried out at the Epithelial Carcinogenesis Group at the CNIO, under the supervision of Francisco X. Real, Jaime Martinez de Villarreal and Enrique Carrillo.
 
@@ -32,7 +32,7 @@ For this analysis R version xx was used.
 ## Data availability
 
 Data used for this project were generated in the Epithelial Carcinogenesis group at the CNIO. 
-These were Visium 10X Genomics Spatial Transcriptomics data generated with panccreatic samples of GEMM mouse models.
+These were Visium 10X Genomics Spatial Transcriptomics data generated with panccreatic samples of a GEMM.
 Data is not publicly available in this repository.
 
 ## Scripts
@@ -43,7 +43,7 @@ Data is not publicly available in this repository.
    - Merge and clustering (Seurat, Harmony)
    - Signature analysis (VISION)
    - Single cell integration (RCTD)
-   - Correlations
+   - Correlations and DE analysis
    - Spot deconvolution (BayesSpace)
    - Regulon Analysis (SCENIC)
 
