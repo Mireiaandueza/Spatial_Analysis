@@ -38,8 +38,18 @@ Data is not publicly available in this repository.
 ## Scripts
 
 1. Quality control
+
+For quality control of the files FASTQC tool was used with the following command:
+
+```bash
+fastqc ./data/*.fastq.gz -o quality/ 
+```
+
 2. Spaceranger software
-3. Downstream analysis with R
+
+Spaceranger software was run on each capture area (1_spaceranger.sh)
+
+4. Downstream analysis with R
    - Merge and clustering (Seurat, Harmony)
    - Signature analysis (VISION)
    - Single cell integration (RCTD)
