@@ -1,18 +1,18 @@
 # Spatial Analysis
 
-This is the GitHub repository associated with my master's thesis "Spatial characterization of the dynamic changes driven by the PDAC risk variant  Ctrb1 Δ exon6  in mouse pancreas" for the master in Bioinformatics and Compuational Biology at the Autonomus University of Madrid.
+This is the GitHub repository associated with my master's thesis "Spatial characterization of the dynamic changes driven by an exon6 deletion variant in murine CTRB1" for the master in Bioinformatics and Compuational Biology at the Autonomus University of Madrid.
 
-This work was carried out at the Epithelial Carcinogenesis group at the CNIO.
+This work was carried out at the Epithelial Carcinogenesis Group at the CNIO, under the supervision of Francisco X. Real, Jaime Martinez de Villarreal and Enrique Carrillo.
 
-<details>
-  <summary>Table of Contents</summary>
+
+<summary>Table of Contents</summary>
   <ol>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#data availability">Scripts</a></li>
-    <li><a href="#scripts">Scripts</a></li>
-    <li><a href="#results">Results</a></li>
+    <li><a href="#Installation">Installation</a></li>
+    <li><a href="#Data availability">Scripts</a></li>
+    <li><a href="#Scripts">Scripts</a></li>
+    <li><a href="#Results">Results</a></li>
   </ol>
-</details>
+
 
 
 ## Installation
@@ -29,7 +29,7 @@ conda env create -f env.yml
 For this analysis R version xx was used.
 
 
-## Data Availability
+## Data availability
 
 Data used for this project were generated in the Epithelial Carcinogenesis group at the CNIO. 
 These were Visium 10X Genomics Spatial Transcriptomics data generated with panccreatic samples of GEMM mouse models.
@@ -47,3 +47,4 @@ Data is not publicly available in this repository.
    - Spot deconvolution (BayesSpace)
    - Regulon Analysis (SCENIC)
 
+## Results
