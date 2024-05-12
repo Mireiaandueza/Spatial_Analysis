@@ -73,7 +73,19 @@ harmony.R # Harmony trial
 6_3_RCTD_join.R
 ```  
   - Correlations and DE analysis
-    
+
+There is a function to compute correlation plots between two signatures or features:
+```{R}
+correlations.R
+```      
+To compute signature-high vs signature-low spot DE analysis, following code was used:
+```{R}
+comparison.R
+```     
+With results from this experiment, genes were uploaded to EnrichR, plots were done with following code:
+```{R}
+comparison.R
+```     
 
   - Spot deconvolution (BayesSpace)
 ```{R}
