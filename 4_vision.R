@@ -13,7 +13,7 @@ library(dplyr)
 
 
 # DIRECTORIES
-samples_dir <- "./ST_files/"
+samples_dir <- "./MERGE/"
 sig_dir <- "./signatures/"
 out_dir <- "./VISION/"
 
