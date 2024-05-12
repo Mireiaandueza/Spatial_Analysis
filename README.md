@@ -2,6 +2,7 @@
 
 This is the GitHub repository associated with my master's thesis "Spatial characterization of the dynamic changes driven by an exon6 deletion variant in murine CTRB1" for the master in Bioinformatics and Computational Biology at the Autonomus University of Madrid.
 
+## Table of Contents
 
 1. [Installation](#introduction)
 2. [Data availability](#installation)
