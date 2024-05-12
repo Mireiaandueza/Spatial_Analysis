@@ -84,7 +84,7 @@ comparison.R
 ```     
 With results from this experiment, genes were uploaded to EnrichR, plots were done with following code:
 ```{R}
-comparison.R
+EnrichR_plot.R
 ```     
 
   - Spot deconvolution (BayesSpace)
