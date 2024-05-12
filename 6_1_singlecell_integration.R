@@ -16,7 +16,7 @@ library(anndata)
 
 
 #PATHS
-spatial_data <- "./ST_files/" #DIRECTORY OF SPATIAL DATA
+spatial_data <- "./VISION/" #DIRECTORY OF SPATIAL DATA
 single_cell_data <- "./single_cell_data/"
 
 
