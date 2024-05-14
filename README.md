@@ -1,4 +1,4 @@
-# Spatial Trancriptomic Analysis of Visium 10X Genomics data
+# Spatial Transcriptomic Analysis of Visium 10X Genomics data
 
 This is the GitHub repository associated with my master's thesis _"Spatial characterization of the dynamic changes driven by an exon6 deletion variant in murine CTRB1"_ for the master in Bioinformatics and Computational Biology at the Autonomus University of Madrid.
 
@@ -83,12 +83,16 @@ Vision software was run for several signature scores of the ST data. These were 
 
   - **Single-cell integration (<code>RCTD</code> and <code>Seurat FindAnchors</code>)**
     
-Single-cell integration was done with RCTD (spot deconvolution) and Seurat FindAnchorsfor comparison:
+Single-cell integration was done with RCTD (spot deconvolution) and Seurat FindAnchors() for comparison:
 
 ```{R}
 6_1_singlecell_integration.R
 6_2_RCTD.R
-6_3_RCTD_join.R # RCTD results were joined, added to metadata, and barplots constructed
+```
+RCTD results were joined and added to the metadata of the spatial object. The following code also constructs the barplots.
+
+```{R}
+6_3_RCTD_join.R 
 ```
 
   - **Correlations and DE analysis**
