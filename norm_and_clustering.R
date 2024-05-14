@@ -1,6 +1,6 @@
 norm_and_clustering <- function(data){
 	
-	#FUNCTION FOR SCT TRANSFORM NORMALIZATION, UMAP AND CLUSTERING
+	# FUNCTION FOR SCT TRANSFORM NORMALIZATION, UMAP AND CLUSTERING
 
 	# Input:
 		# data: data to transform (Seurat object)
