@@ -1,7 +1,8 @@
 comparison <- function(ST , group, signature, out_dir){
 
-# FUNCTION TO COMPARE SPOTS FROM DATASET ST, of Genotype_Timepoint = group
-  #that have high signature vs low signature (from Q1 vs Q3) with DE genes
+# FUNCTION TO COMPUTE DIFFERENTIAL EXPRESSION FROM SPOTS (dataset = ST), 
+  # of Genotype_Timepoint = group that have high vs low expresion of 
+  # the signature. It saves a cvs file in the ouput directory.
 
 
 setwd(out_dir)
