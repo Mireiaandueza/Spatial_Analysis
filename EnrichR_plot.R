@@ -38,9 +38,12 @@ files <- c( "3m_UP_DD_Reactome_2022_table.txt",
 
 
 
-genes_3m <- genratio_count(read.table(file = files[1], header = TRUE, sep ="\t"))
-genes_6m <- genratio_count(read.table(file =  files[2], header = TRUE, sep ="\t"))
-#genes_18m <- genratio_count(read.table(file =  files[3], header = TRUE, sep ="\t"))
+genes_3m <- genratio_count(read.table(file = files[1], 
+                                      header = TRUE, sep ="\t"))
+genes_6m <- genratio_count(read.table(file =  files[2],
+                                      header = TRUE, sep ="\t"))
+#genes_18m <- genratio_count(read.table(file =  files[3], 
+                                      #header = TRUE, sep ="\t"))
 
 genes_3m$time <- "3 months"
 genes_6m$time <- "6 months"
@@ -63,7 +66,8 @@ genes_10 <-  arrange(genes_10,Adjusted.P.value)
 
 data3 <- genes_10[genes_10$time == "3 months",]
 missing_terms <- unique(genes_10$Term)[!(unique(genes_10$Term) %in% data3$Term)]
-missing_rows <- data.frame(Term = missing_terms, Overlap  =NA,P.value=NA ,Adjusted.P.value = NA, 
+missing_rows <- data.frame(Term = missing_terms, Overlap  =NA,P.value=NA ,
+                           Adjusted.P.value = NA, 
                            Old.P.value = NA, Old.Adjusted.P.value = NA,
                            Odds.Ratio = NA, Combined.Score = NA,
                            Genes = NA, Count = NA, GeneRatio = 0,
@@ -84,7 +88,8 @@ data6$Term <- factor(data6$Term, levels = unique(data3$Term))
 #data18 <- genes_10[genes_10$time == "1.5 years",]
 
 #missing_terms <- unique(genes_10$Term)[!(unique(genes_10$Term) %in% data18$Term)]
-#missing_rows <- data.frame(Term = missing_terms, Overlap  =NA,P.value=NA ,Adjusted.P.value = NA, 
+#missing_rows <- data.frame(Term = missing_terms, Overlap  =NA,P.value=NA ,
+                          # Adjusted.P.value = NA, 
                           # Old.P.value = NA, Old.Adjusted.P.value = NA,
                           # Odds.Ratio = NA, Combined.Score = NA,
                           # Genes = NA, Count = NA, GeneRatio = 0,
