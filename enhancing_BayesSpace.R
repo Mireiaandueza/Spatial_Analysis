@@ -1,4 +1,5 @@
 # RUN BAYESSPACE ON ST DATA TO ENHANCE SPOT RESOLUTION
+# Computes BayesSpace on each slide separately
 
 #LIBRARIES
 library(SingleCellExperiment)
@@ -30,6 +31,13 @@ data$clusters <- as.character(data$clusters)
 
 # FUNCTION
 run_bayes <- function(file_dir, out_dir, file, clusters){
+
+	# Input:
+		# file_dir: input file directory
+		# file: input file 
+		# out_dir: output file directory
+		# clusters: number of clusters
+	# Output: enhanced seurat object saved in out_dir
 	
 	print(paste0(file_dir, file))
 	ST <- readRDS(paste0(file_dir, file))
@@ -87,10 +95,12 @@ run_bayes <- function(file_dir, out_dir, file, clusters){
 	print("Markers enhanced!")
 
 	#CREATE SEURAT ENHANCED OBJECT
-  seurat_enh <- as.Seurat(sce.enhanced, counts = NULL, data = "logcounts",project = "Spatial" )
+  	seurat_enh <- as.Seurat(sce.enhanced, counts = NULL, 
+				data = "logcounts",project = "Spatial" )
 
 	#Add metadata
-	A <- rbind(ST@meta.data, ST@meta.data, ST@meta.data, ST@meta.data, ST@meta.data, ST@meta.data)
+	A <- rbind(ST@meta.data, ST@meta.data, ST@meta.data, 
+		   ST@meta.data, ST@meta.data, ST@meta.data)
 	seurat_enh <- AddMetaData(seurat_enh, A)
 	seurat_enh@images[[slide]] <- ST@images[[1]] 
 	
