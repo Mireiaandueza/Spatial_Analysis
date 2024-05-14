@@ -2,6 +2,10 @@ norm_and_clustering <- function(data){
 	
 	#FUNCTION FOR SCT TRANSFORM NORMALIZATION, UMAP AND CLUSTERING
 
+	# Input:
+		# data: data to transform (Seurat object)
+	# Output: Seurat object with SCT normalization, UMAP reduction and clustered
+	
 	# ST TRANSFORM
 	#Remove subset with no UMIS and correct errors
 	ST_SCT <- subset(data, nCount_Spatial>0)
