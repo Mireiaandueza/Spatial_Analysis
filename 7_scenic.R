@@ -141,7 +141,8 @@ p1 <- SpatialFeaturePlot(ST, features = "Creb3l1_regulon", images = "ST2",
                          pt.size.factor = 1.8, image.alpha = 0) + 
   theme(legend.position = "right")+
   scale_fill_gradientn(colors = c( "blue","darkseagreen4","khaki","red"),
-                       limits = c(0.2,scale_range[2]), values = rescale(c(0.2,0.4,0.6,0.7)))
+                       limits = c(0.2,scale_range[2]), 
+                       values = rescale(c(0.2,0.4,0.6,0.7)))
 pdf("ST2_Creb3l1_regulon.pdf")
 p1 
 dev.off()

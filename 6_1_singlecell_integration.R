@@ -16,7 +16,7 @@ library(anndata)
 
 
 #PATHS
-spatial_data <- "./VISION/" #DIRECTORY OF SPATIAL DATA
+spatial_data <- "./ST_files/" #DIRECTORY OF SPATIAL DATA
 single_cell_data <- "./single_cell_data/"
 
 
@@ -82,7 +82,8 @@ transfer_data <- function(ST, ref_data, dataset_name) {
                                     weight.reduction = ST[["pca"]], 
                                     dims = 1:30)
   # Add as metaData
-  ST <- AddMetaData(object = ST, metadata = predictions.assay$predicted.id, col.name =dataset_name)
+  ST <- AddMetaData(object = ST, metadata = predictions.assay$predicted.id,
+                    col.name =dataset_name)
 
   # Return
   return(ST)

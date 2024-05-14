@@ -46,9 +46,9 @@ rownames(counts) <- rownames(single_cell)
 colnames(counts) <- colnames(single_cell)
 
 cell_types <- Idents(single_cell)
-names(cell_types) <- colnames(single_cell) # create cell_types named list
-cell_types <- as.factor(cell_types) # convert to factor data type
-nUMI <- single_cell$nCount_SCT; names(nUMI) <- colnames(single_cell) # create nUMI named list
+names(cell_types) <- colnames(single_cell)
+cell_types <- as.factor(cell_types) 
+nUMI <- single_cell$nCount_SCT; names(nUMI) <- colnames(single_cell) 
 
 reference <- Reference(counts, cell_types, nUMI)
 print("referenced")
@@ -72,7 +72,8 @@ run_deconvolution <- function(ST, single_cell, slide){
 
 
 
-	myRCTD <- create.RCTD(spaceRNA, reference, max_cores = 1, CELL_MIN_INSTANCE = 15)
+	myRCTD <- create.RCTD(spaceRNA, reference, max_cores = 1,
+	                      CELL_MIN_INSTANCE = 15)
 	print("create.RCTD")
 
 	myRCTD <- run.RCTD(myRCTD, doublet_mode = 'doublet')
@@ -87,7 +88,7 @@ run_deconvolution <- function(ST, single_cell, slide){
 	results <- myRCTD@results
 	# normalize the cell type proportions to sum to 1.
 	norm_weights = normalize_weights(results$weights) 
-	cell_type_names <- myRCTD@cell_type_info$info[[2]] #list of cell type names
+	cell_type_names <- myRCTD@cell_type_info$info[[2]] s
 	spatialRNA <- myRCTD@spatialRNA
 
 

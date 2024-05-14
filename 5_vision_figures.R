@@ -98,16 +98,27 @@ spatial_features <- function(ST, slide, feature){
 
 #Signatures
 
-firmas <- c("Signature_acinar","Signature_DD","DD_3months", "DD_6months", "DD_1.5years", "Metaplastic_Schlesinger","REACTOME_DIABETES",
-"Prasad_et_al_Panin1_2_up","ER_Stress","PERK_UPR", "IRE1_UPR", "ATF6_UPR","ACUTE_INFLAMMATORY_RESPONSE", "Reprogrammed")
+firmas <- c("Signature_acinar","Signature_DD","DD_3months", "DD_6months", 
+            "DD_1.5years", "Metaplastic_Schlesinger","REACTOME_DIABETES",
+            "Prasad_et_al_Panin1_2_up","ER_Stress","PERK_UPR", "IRE1_UPR", 
+            "ATF6_UPR","ACUTE_INFLAMMATORY_RESPONSE", "Reprogrammed")
 
 
 ST$seurat_clusters <- ST@active.ident
 
-#ST$Genotype_Timepoint <- factor(ST$Genotype_Timepoint, levels = c("WT 3 months", "WT 6 months", "WT 1.5 years","HET 3 months", "HET 6 months","HET 1.5 years","DD 3 months", "DD 6 months", "DD 1.5 years", "KRAS WT 6 months","KRAS DD 6 months"))
-ST$Genotype_Timepoint <- factor(ST$Genotype_Timepoint, levels = c("WT 3 months", "WT 6 months", "WT 1.5 years","HET 3 months", "HET 6 months","HET 1.5 years","DD 3 months", "DD 6 months", "DD 1.5 years"))
+#ST$Genotype_Timepoint <- factor(ST$Genotype_Timepoint, 
+  #levels = c("WT 3 months", "WT 6 months", "WT 1.5 years","HET 3 months", 
+  #"HET 6 months","HET 1.5 years","DD 3 months", "DD 6 months", "DD 1.5 years",
+  #"KRAS WT 6 months","KRAS DD 6 months"))
+ST$Genotype_Timepoint <- factor(ST$Genotype_Timepoint, 
+                                levels = c("WT 3 months", "WT 6 months", 
+                                           "WT 1.5 years","HET 3 months", 
+                                           "HET 6 months","HET 1.5 years",
+                                           "DD 3 months", "DD 6 months", 
+                                           "DD 1.5 years"))
 
-#ST$Genotype <- factor(ST$Genotype, levels = c("WT","HET","DD","KRAS WT","KRAS DD"))
+#ST$Genotype <- factor(ST$Genotype, levels = c("WT","HET","DD","KRAS WT",
+  #"KRAS DD"))
 ST$Genotype <- factor(ST$Genotype, levels = c("WT","HET","DD"))
 
 Groups <- c("seurat_clusters", "Genotype_Timepoint", "Genotype")
@@ -115,8 +126,10 @@ Groups <- c("seurat_clusters", "Genotype_Timepoint", "Genotype")
 # Colors 
 #cols1 <- c("grey","hotpink","darkorchid4","skyblue", "skyblue4")
 cols1 <- c("grey","mediumorchid1","darkorchid4")
-#cols2 <- c("gray80","gray60", "gray40","pink","hotpink","deeppink2","mediumorchid1","darkorchid", "darkorchid4", "skyblue", "skyblue4")
-cols2 <- c("gray80","gray60", "gray40","pink","hotpink","deeppink2","mediumorchid1","darkorchid", "darkorchid4")
+#cols2 <- c("gray80","gray60", "gray40","pink","hotpink","deeppink2",
+  #"mediumorchid1","darkorchid", "darkorchid4", "skyblue", "skyblue4")
+cols2 <- c("gray80","gray60", "gray40","pink","hotpink","deeppink2",
+           "mediumorchid1","darkorchid", "darkorchid4")
 
 
 # Apply violinplot to each signature
@@ -134,8 +147,8 @@ dir.create(file.path(mainDir, "SLIDES"))
 setwd(file.path(mainDir, "SLIDES"))
 
 # SPATIAL FEATURE plot
-#names(ST@images) <- c("ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", "ST8", "ST9", "ST10", "ST12")
-names(ST@images) <- c("ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", "ST8", "ST9", "ST10")
+names(ST@images) <- c("ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", "ST8", 
+                      "ST9", "ST10")
 
 # Create colour palette
 Idents(ST) <- ST$SCT_snn_res.0.2
@@ -175,10 +188,12 @@ pmap(combinations, spatial_features, ST = ST)
 slides <- names(ST@images)
 lapply(slides, function(slide) {
 	ST_sub <- subset(x = ST, subset = Slide == slide)
-	colors  <- default_palette[sort(match(unique(ST_sub@meta.data$seurat_clusters_colors), default_palette))]
+	colors  <- default_palette[sort(match(unique(ST_sub@meta.data$seurat_clusters_colors),
+	                                      default_palette))]
 	
 	pdf(paste0(slide,"_cluster.pdf"))
-	plot2 <- SpatialDimPlot(ST_sub, label = TRUE, label.size = 1.5, images = slide, pt.size.factor = 2, image.alpha = 0)+
+	plot2 <- SpatialDimPlot(ST_sub, label = TRUE, label.size = 1.5, 
+	                        images = slide, pt.size.factor = 2, image.alpha = 0)+
  	scale_fill_manual(values= colors)+NoLegend()
 	print(plot2)
 	dev.off()
