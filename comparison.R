@@ -1,9 +1,14 @@
 comparison <- function(ST , group, signature, out_dir){
 
-# FUNCTION TO COMPUTE DIFFERENTIAL EXPRESSION FROM SPOTS (dataset = ST), 
-  # of Genotype_Timepoint = group that have high vs low expresion of 
-  # the signature. It saves a cvs file in the ouput directory.
+# FUNCTION TO COMPUTE DIFFERENTIAL EXPRESSION FROM SPOTS, 
+  # that have high vs low expresion of the signature. 
 
+  	# Input:
+		  # ST: Spatial transcritpmics seurat object
+		  # group: genotype_timepoint subgroup to analyze
+		  # signature: signature to compare
+		  # out_dir: output directory
+	# Output: It saves a cvs file in the ouput directory.
 
 setwd(out_dir)
 
