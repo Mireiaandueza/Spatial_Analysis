@@ -1,5 +1,6 @@
 
-#CODE FOR MERGING DATASET AND DOWNSTREAM ANALYSIS: normalization, dimension reduction and clustering
+#CODE FOR MERGING DATASET AND DOWNSTREAM ANALYSIS: normalization, 
+  #dimension reduction and clustering
 
 # LIBRARIES
 library(Matrix)
@@ -27,7 +28,8 @@ dir.create(file.path(getwd(), "MERGE"))
 source("norm_and_clustering.R")
 
 # LOAD SAMPLES
-files <- c("ST1.rds","ST2.rds","ST3.rds","ST4.rds", "ST5.rds", "ST6.rds","ST7.rds", "ST8.rds","ST09.rds","ST10.rds","ST11.rds","ST12.rds")
+files <- c("ST1.rds","ST2.rds","ST3.rds","ST4.rds", "ST5.rds", "ST6.rds",
+           "ST7.rds", "ST8.rds","ST09.rds","ST10.rds","ST11.rds","ST12.rds")
 rds_data <- map(files, readRDS)
 
 
@@ -51,10 +53,18 @@ return(file)})
 
 
 # MERGE
-ST_merged  <- merge(x = rds_data[[1]], y = c(rds_data[[2]], rds_data[[3]], rds_data[[4]], rds_data[[5]], rds_data[[6]], rds_data[[7]], rds_data[[8]],rds_data[[9]],rds_data[[10]],rds_data[[11]]), add.cell.ids = c("ST1","ST2","ST3","ST4","ST5","ST6","ST7","ST8","ST9","ST10","ST11"), merge.data = TRUE)
+ST_merged  <- merge(x = rds_data[[1]], y = c(rds_data[[2]], rds_data[[3]], 
+                                             rds_data[[4]], rds_data[[5]], 
+                                             rds_data[[6]], rds_data[[7]], 
+                                             rds_data[[8]],rds_data[[9]],
+                                             rds_data[[10]],rds_data[[11]]), 
+                    add.cell.ids = c("ST1","ST2","ST3","ST4","ST5","ST6","ST7",
+                                     "ST8","ST9","ST10","ST11"), 
+                    merge.data = TRUE)
 
 # Image names
-names(ST_merged@images) <- c("ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", "ST8", "ST9", "ST10", "ST11")
+names(ST_merged@images) <- c("ST1", "ST2", "ST3", "ST4", "ST5", "ST6", "ST7", 
+                             "ST8", "ST9", "ST10", "ST11")
 ST_merged$Slide <- as.factor(ST_merged$Slide)
 ST_merged <- JoinLayers(ST_merged,  assay = "Spatial")
 
@@ -69,7 +79,8 @@ ST_filtered@images <-ST_merged@images[-which(names(ST_merged@images) == "ST11")]
 
 
 # FILTER OUT GANGLION 
-ST_merged <- subset(x = ST_filtered, subset = Genotype == "Ganglion", invert = TRUE)
+ST_merged <- subset(x = ST_filtered, subset = Genotype == "Ganglion", 
+                    invert = TRUE)
 
 ##########################################
 
@@ -78,7 +89,8 @@ setwd(out_path)
 
 # QUALITY nCount vs nFeature
 pdf("quality.pdf")
-plot2 <- FeatureScatter(ST_merged, feature1 = "nCount_Spatial", feature = "nFeature_Spatial", group.by = "Genotype")
+plot2 <- FeatureScatter(ST_merged, feature1 = "nCount_Spatial", 
+                        feature = "nFeature_Spatial", group.by = "Genotype")
 plot2
 dev.off()
 
@@ -93,22 +105,28 @@ saveRDS(ST_SCT, file = "ST_merge.rds")
 ##########################################
 
 # DIMPLOT OF FEATURES
-p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Genotype", cols = c("darkorchid", "mediumorchid1","grey")) + ggtitle("Clusters colored by genotype")
+p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Genotype", 
+              cols = c("darkorchid", "mediumorchid1","grey")) + 
+  ggtitle("Clusters colored by genotype")
 pdf("clustering_by_Genotype.pdf")
 p1 
 dev.off()
 
-p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Timepoint",cols = c("darkorchid", "mediumorchid1","grey"))+ggtitle("Clusters colored by timepoint")
+p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Timepoint",
+              cols = c("darkorchid", "mediumorchid1","grey"))+
+  ggtitle("Clusters colored by timepoint")
 pdf("clustering_by_Timepoint.pdf")
 p1 
 dev.off()
 
-p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Sample")+ ggtitle("Clusters colored by sample")
+p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Sample")+ 
+  ggtitle("Clusters colored by sample")
 pdf("clustering_by_Sample.pdf")
 p1 
 dev.off()
 
-p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Slide")+ ggtitle("Clusters colored by capture area")
+p1 <- DimPlot(ST_SCT, reduction = "umap", label = TRUE, group.by = "Slide")+ 
+  ggtitle("Clusters colored by capture area")
 pdf("clustering_by_Slide.pdf")
 p1 
 dev.off()
@@ -119,12 +137,14 @@ dev.off()
 
 #ACINAR 
 pdf("Acinar_umap.pdf")
-FeaturePlot(ST_SCT, features =c("Agr2", "Cel","Pnlip", "Ctrb1"), reduction = "umap")
+FeaturePlot(ST_SCT, features =c("Agr2", "Cel","Pnlip", "Ctrb1"), 
+            reduction = "umap")
 dev.off()
 
 #ENDOCRINE
 pdf("Endocrine.pdf")
-FeaturePlot(ST_SCT, features = c("Sst", "Gcg","Ins1", "Ins2"), reduction = "umap")
+FeaturePlot(ST_SCT, features = c("Sst", "Gcg","Ins1", "Ins2"), 
+            reduction = "umap")
 dev.off()
 
 #EPITELIAL
@@ -144,7 +164,8 @@ dev.off()
 Idents(ST_SCT) <- ST_SCT$SCT_snn_res.0.2
 ST_SCT$seurat_clusters <- Idents(ST_SCT)
 
-pbmc.markers <- FindAllMarkers(ST_SCT, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
+pbmc.markers <- FindAllMarkers(ST_SCT, only.pos = TRUE, min.pct = 0.25, 
+                               logfc.threshold = 0.25)
 pbmc.markers %>%
     group_by(cluster) %>%
     slice_max(n = 5, order_by = avg_log2FC) %>% print(n = 30)
@@ -155,12 +176,19 @@ ST_SCT <- RenameIdents(ST_SCT, cluster_names)
 ST_SCT$seurat_clusters <- Idents(ST_SCT)
 ST$Genotype <- factor(ST$Genotype, levels = c("WT","HET","DD"))
 
-ST_SCT$seurat_clusters <- factor(ST_SCT$seurat_clusters, levels = c("Acinar WT (I)","Acinar WT (II)","Acinar HET (I)","Acinar HET (II)","KRAS WT","KRAS DD", "Immune","Endocrine","Per 106", 
-"Per 152 (Islet Mice)", "Per 222", "Per 135", "Per 189",  "Cluster 8", "Cluster 14"))
+ST_SCT$seurat_clusters <- factor(ST_SCT$seurat_clusters, 
+                                 levels = c("Acinar WT (I)","Acinar WT (II)",
+                                            "Acinar HET (I)","Acinar HET (II)",
+                                            "KRAS WT","KRAS DD", "Immune",
+                                            "Endocrine","Per 106", 
+                                            "Per 152 (Islet Mice)", "Per 222", 
+                                            "Per 135", "Per 189",  "Cluster 8", 
+                                            "Cluster 14"))
 
 # STACKED BARPLOT OF CLUSTERS
 # Convert cluster information to a data frame
-cluster_data <- as.data.frame(table(ST_SCT$Genotype,ST_SCT$Timepoint, ST_SCT$seurat_clusters))
+cluster_data <- as.data.frame(table(ST_SCT$Genotype,ST_SCT$Timepoint, 
+                                    ST_SCT$seurat_clusters))
 colnames(cluster_data) <- c("Genotype","Timepoint", "Cluster", "Count")
 
 
@@ -168,5 +196,6 @@ colnames(cluster_data) <- c("Genotype","Timepoint", "Cluster", "Count")
 pdf("Stacked_Cluster.pdf")
 ggplot(cluster_data, aes(x = Cluster, y = Count, fill = as.factor(Genotype))) +
   geom_bar(stat = "identity") +
-  labs(title = "Cluster Distribution by Genotype") + theme(axis.text.x=element_text(angle=45, hjust=1))
+  labs(title = "Cluster Distribution by Genotype") + 
+  theme(axis.text.x=element_text(angle=45, hjust=1))
 dev.off()
