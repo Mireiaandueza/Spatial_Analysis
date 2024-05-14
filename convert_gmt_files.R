@@ -1,6 +1,8 @@
 convert_gmt_files <- function(file, output_file){
 
   # Converts a gmt file containing human genes to mouse genes
+  # Saves the new file in directory output_file
+  
   # LIBRARIES
   library(devtools)
   library(Seurat)
