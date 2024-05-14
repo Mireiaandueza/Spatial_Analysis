@@ -13,10 +13,12 @@ This is the GitHub repository associated with my master's thesis _"Spatial chara
 ## Installation
 
 - Clone the repository
-- Create conda environment with necessary packages: this can be done by cloning the following conda environments:
+- Create conda environment with necessary dependencies. This can be done by cloning the following conda environments:
 
 ```bash
-conda env create -f env.yml
+conda env create -f env_1.yml # For Seurat, Clustree, ggplot2
+conda env create -f env_2.yml # For VISION, Harmony
+conda env create -f env_3.yml # For SCENIC, spacexr, BayesSpace
 ```
 
 ### Package versions
